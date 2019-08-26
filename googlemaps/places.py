@@ -97,15 +97,7 @@ def find_place(client, input, input_type, fields=None, location_bias=None,
                          "the given value is invalid: '%s'" % input_type)
 
     if fields:
-        invalid_fields = set(fields) - PLACES_FIND_FIELDS
-        if invalid_fields:
-            raise ValueError("Valid values for the `fields` param for "
-                             "`find_place` are '%s', these given field(s) "
-                             "are invalid: '%s'" % (
-                                "', '".join(PLACES_FIND_FIELDS),
-                                "', '".join(invalid_fields)))
         params["fields"] = convert.join_list(",", fields)
-
     if location_bias:
         valid = ["ipbias", "point", "circle", "rectangle"]
         if location_bias.split(":")[0] not in valid:
@@ -316,13 +308,6 @@ def place(client, place_id, session_token=None, fields=None, language=None):
     params = {"placeid": place_id}
 
     if fields:
-        invalid_fields = set(fields) - PLACES_DETAIL_FIELDS
-        if invalid_fields:
-            raise ValueError("Valid values for the `fields` param for "
-                             "`place` are '%s', these given field(s) "
-                             "are invalid: '%s'" % (
-                                "', '".join(PLACES_DETAIL_FIELDS),
-                                "', '".join(invalid_fields)))
         params["fields"] = convert.join_list(",", fields)
 
     if language:
