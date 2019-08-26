@@ -61,9 +61,6 @@ class PlacesTest(_test.TestCase):
             self.client.find_place('restaurant', 'invalid')
         with self.assertRaises(ValueError):
             self.client.find_place('restaurant', 'textquery',
-                                    fields=['geometry', 'invalid'])
-        with self.assertRaises(ValueError):
-            self.client.find_place('restaurant', 'textquery',
                                     location_bias='invalid')
 
     @responses.activate
@@ -125,10 +122,6 @@ class PlacesTest(_test.TestCase):
         self.assertURLEqual('%s?language=en-AU&placeid=ChIJN1t_tDeuEmsRUsoyG83frY4'
                             '&key=%s&fields=geometry,id'
                             % (url, self.key), responses.calls[0].request.url)
-
-        with self.assertRaises(ValueError):
-            self.client.place('ChIJN1t_tDeuEmsRUsoyG83frY4',
-                              fields=['geometry', 'invalid'])
 
     @responses.activate
     def test_photo(self):
