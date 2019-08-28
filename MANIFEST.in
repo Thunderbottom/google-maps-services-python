@@ -1,4 +1,4 @@
-include LICENSE README.md
+include LICENSE README.md CHANGELOG.md
 recursive-include googlemaps/test *.py
 global-exclude __pycache__
 global-exclude *.py[co]
